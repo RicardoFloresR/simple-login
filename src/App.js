@@ -1,19 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 import {LoginForm} from "./components/login-form";
-import { Provider } from 'react-redux';
-import Store from './store';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+    const auth = useSelector((state) => state.auth.value);
+    const userName = useSelector((state) => state.user.value)
+
   return (
-    <Provider store={Store}>
-        <div className="App">
-            <header className="App-header">
-                <LoginForm />
-                <h4 className="header-4">My name in Giovanni Georgio, but everybody calls me...</h4>
-            </header>
-        </div>
-    </Provider>
+    <div className="main">
+        {auth ? `Welcome mf: ${userName}` : <LoginForm />}
+    </div>
   );
 }
 
